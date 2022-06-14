@@ -32,11 +32,11 @@ This is an Olympic Games dataset that describes medals and athletes for Tokyo 20
 More than 2,400 medals, and 11,000 athletes (with some personal data: date and place of birth, height, etc.) of the XXXII Olympic Games you can find here. Apart from it coaches and technical officials are present.
 
 Data:
--medals_total.csv - dataset contains all medals grouped by country as here.
--medals.csv - dataset includes general information on all athletes who won a medal.
--athletes.csv - dataset includes some personal information of all athletes.
--coaches.csv - dataset includes some personal information of all coaches.
--technical_officials - dataset includes some personal information of all technical officials.
+- medals_total.csv - dataset contains all medals grouped by country as here.
+- medals.csv - dataset includes general information on all athletes who won a medal.
+- athletes.csv - dataset includes some personal information of all athletes.
+- coaches.csv - dataset includes some personal information of all coaches.
+- technical_officials - dataset includes some personal information of all technical officials.
 
 [Dataset URL](https://www.kaggle.com/piterfm/tokyo-2020-olympics?select=athletes.csv )
 ## Dimensional Model - Star Schema
