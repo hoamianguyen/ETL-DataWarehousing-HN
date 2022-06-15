@@ -41,4 +41,8 @@ Data:
 [Dataset URL](https://www.kaggle.com/piterfm/tokyo-2020-olympics?select=athletes.csv )
 ## Dimensional Model - Star Schema
 Our dimensional model is created with 1 Fact table and 6 dimensional tables ( dim_technicals, dim_coach, dim_country, dim_athelet, dim_discipline and dim_medals). We decided to use the star schema, with the fact table surrounded by 6 dimensional tables since this schema is the most common and it is great for query, performance and analytics. 
-![Model Image](C:/Users/nguye/Downloads/CIS 9440 - Data Warehousing/StarSchema.png)
+![Model Image](C:\Users\nguye\Documents\GitHub\ETL-DataWarehousing-HN\StarSchema.png)
+
+
+
+
