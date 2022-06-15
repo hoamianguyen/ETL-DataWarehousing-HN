@@ -1,0 +1,93 @@
+CREATE TABLE Dim_Country(
+    Country_Code VARCHAR(3) NOT NULL,
+    Country VARCHAR(100),
+    PRIMARY KEY (Country_Code)
+);
+
+CREATE TABLE Dim_Discipline(
+    Discipline_Code VARCHAR(3) NOT NULL,
+    Discipline VARCHAR(100),
+    PRIMARY KEY (Discipline_Code)
+);
+
+CREATE TABLE Dim_Athlete (
+    Athlete_Url VARCHAR(max) NOT NULL,
+    Athlete_Short_Name VARCHAR(100) NOT NULL,
+    Name VARCHAR(50),
+    Gender VARCHAR(6),
+    PRIMARY KEY (Athlete_Url)
+);
+
+CREATE TABLE Fact_Athlete (
+    Athlete_Url VARCHAR(max) NOT NULL,
+    Birth_Date DATE,
+    Birth_Place VARCHAR(50),
+    Birth_Country VARCHAR(50),
+    Country_Code VARCHAR(3) NOT NULL,
+    Discipline_Code VARCHAR(3) NOT NULL,
+    Residence_Place VARCHAR(50),
+    Residence_Country VARCHAR(50),
+    Height_ft_ratio VARCHAR(30),
+    PRIMARY KEY (Athlete_Url, Country_Code, Discipline_Code),
+    FOREIGN KEY (Athlete_Url) REFERENCES Dim_Athlete(Athlete_Url),
+    FOREIGN KEY (Country_Code) REFERENCES Dim_Country(Country_Code),
+    FOREIGN KEY (Discipline_Code) REFERENCES Dim_Discipline(Discipline_Code)
+);
+
+CREATE TABLE Fact_Coach (
+    Coach_url VARCHAR(Max) NOT NULL,
+    Coach_Short_Name VARCHAR(20),
+    Name VARCHAR(30),
+    Gender VARCHAR(20),
+    Birth_Date DATE,
+    Country_Code VARCHAR(3) NOT NULL,
+    Discipline VARCHAR(30) NOT NULL,
+    Function VARCHAR(30),
+    Event VARCHAR(30),
+    PRIMARY KEY (Coach_url, Country_Code),
+    FOREIGN KEY (Country_Code) REFERENCES Dim_Country(Country_Code)
+);
+
+CREATE TABLE Technical_officials (
+    Techofficial_Short_Name VARCHAR(50) NOT NULL,
+    Name VARCHAR(50),
+    Gender VARCHAR(10),
+    Birth_Date DATE,
+    Country VARCHAR(50) NOT NULL,
+    Discipline VARCHAR(50) NOT NULL,
+    Function VARCHAR(50),
+    PRIMARY KEY (Techofficial_Short_Name, Country, Discipline)
+);
+
+CREATE TABLE Dim_Medals(
+    Medal_Code SMALLINT NOT NULL,
+    Medal_Types VARCHAR(30),
+    PRIMARY KEY (Medal_Code)
+);
+
+CREATE TABLE Fact_Individual_Achievement(
+    Country_Code VARCHAR(3) NOT NULL,
+    Medal_Code SMALLINT NOT NULL,
+    Athlete_Url VARCHAR(MAX) NOT NULL,
+    Discipline_Code VARCHAR(3) NOT NULL,
+	Medal_Date DATE,
+    Event VARCHAR(max),
+    PRIMARY KEY (Country_Code, Medal_Code, Athlete_Url, Discipline_Code),
+    FOREIGN KEY (Medal_Code) REFERENCES Dim_Medals(Medal_Code),
+    FOREIGN KEY (Athlete_Url) REFERENCES Dim_Athlete(Athlete_Url),
+    FOREIGN KEY (Country_Code) REFERENCES Dim_Country(Country_Code),
+    FOREIGN KEY (Discipline_Code) REFERENCES Dim_Discipline(Discipline_Code)
+);
+
+CREATE TABLE Fact_Country_Achievement(
+    Rank SMALLINT NOT NULL,
+    Country_Code VARCHAR(3) NOT NULL,
+    Gold_Medal SMALLINT NOT NULL,
+    Silver_Medal SMALLINT NOT NULL,
+    Bronze_Medal SMALLINT NOT NULL,
+    Total SMALLINT NOT NULL,
+    primary key (Country_Code),
+    FOREIGN KEY(Country_Code) REFERENCES Dim_Country(Country_Code)
+);
+
+
